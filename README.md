@@ -151,7 +151,7 @@ FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Find Rest
 
 This project use this libraries ~ Thanks to them.
 
-  [android-gif-drawable](https://github.com/flavioarfaria/KenBurnsView)
+  [KenBurnsView](https://github.com/flavioarfaria/KenBurnsView)
 
 ## Contributing
 
