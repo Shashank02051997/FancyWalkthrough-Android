@@ -30,7 +30,7 @@ dependencies {
 # Fancy Walkthrough
 Fancy Walkthrough library for android with Image or Solid color backgrounds.
 
-<img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/20180114_133325.gif">
+<img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/20180114_133325.gif" height="420" width="240">
 
 ## How to use
 
@@ -38,7 +38,8 @@ Fancy Walkthrough library for android with Image or Solid color backgrounds.
 
 ```java
 public class YourActivity extends FancyWalkthroughActivity {
-// setContentView(View)
+// setContentView(R.layout.activity_main);
+       
 ```
 
 **Then, Create `FancyWalkthroughCard` and configure it accordingly**
@@ -89,9 +90,9 @@ setColorBackground(R.color.solid_one);
 ```
 
 <img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/Screenshot_2018-01-14-14-23-36.png" height="420" width="240" hspace="20"><img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/Screenshot_2018-01-14-14-23-39.png" height="420" width="240" hspace="20">
-<img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/Screenshot_2018-01-14-14-23-47.png" height="420" width="240">
+<img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/Screenshot_2018-01-14-14-23-47.png" height="420" width="240" hspace="20">
 
-<img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/Screenshot_2018-01-14-14-23-51.png" height="420" width="240">
+<img src="https://github.com/Shashank02051997/FancyWalkthrough-Android/blob/master/Screenshots/Screenshot_2018-01-14-14-23-51.png" height="420" width="240" hspace="20">
 
 ### Other properties
 ```java
@@ -109,7 +110,48 @@ setFinishButtonTitle("Get Started");
 //Set the finish button style
 setFinishButtonDrawableStyle(ContextCompat.getDrawable(this, R.drawable.rounded_button));
 ```
+### Sample Code
+```java
 
+FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Find Restaurant", "Find the best restaurant in your neighborhood.",R.drawable.find_restaurant1);
+        FancyWalkthroughCard fancywalkthroughCard2 = new FancyWalkthroughCard("Pick the best", "Pick the right place using trusted ratings and reviews.",R.drawable.pickthebest);
+        FancyWalkthroughCard fancywalkthroughCard3 = new FancyWalkthroughCard("Choose your meal", "Easily find the type of food you're craving.",R.drawable.chooseurmeal);
+        FancyWalkthroughCard fancywalkthroughCard4 = new FancyWalkthroughCard("Meal is on the way", "Get ready and comfortable while our biker bring your meal at your door.",R.drawable.mealisonway);
+
+        fancywalkthroughCard1.setBackgroundColor(R.color.white);
+        fancywalkthroughCard1.setIconLayoutParams(300,300,0,0,0,0);
+        fancywalkthroughCard2.setBackgroundColor(R.color.white);
+        fancywalkthroughCard2.setIconLayoutParams(300,300,0,0,0,0);
+        fancywalkthroughCard3.setBackgroundColor(R.color.white);
+        fancywalkthroughCard3.setIconLayoutParams(300,300,0,0,0,0);
+        fancywalkthroughCard4.setIconLayoutParams(300,300,0,0,0,0);
+        List<FancyWalkthroughCard> pages = new ArrayList<>();
+
+        pages.add(fancywalkthroughCard1);
+        pages.add(fancywalkthroughCard2);
+        pages.add(fancywalkthroughCard3);
+        pages.add(fancywalkthroughCard4);
+
+        for (FancyWalkthroughCard page : pages) {
+            page.setTitleColor(R.color.black);
+        fancywalkthroughCard4.setBackgroundColor(R.color.white);
+            page.setDescriptionColor(R.color.black);
+        }
+        setFinishButtonTitle("Get Started");
+        showNavigationControls(true);
+        setColorBackground(R.color.colorGreen);
+        //setImageBackground(R.drawable.restaurant);
+        setInactiveIndicatorColor(R.color.grey_600);
+        setActiveIndicatorColor(R.color.colorGreen);
+        setOnboardPages(pages);
+```
+
+
+## Dependencies
+
+This project use this libraries ~ Thanks to them.
+
+  [android-gif-drawable](https://github.com/flavioarfaria/KenBurnsView)
 
 ## Contributing
 
