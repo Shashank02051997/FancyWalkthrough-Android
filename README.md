@@ -112,7 +112,6 @@ setFinishButtonDrawableStyle(ContextCompat.getDrawable(this, R.drawable.rounded_
 ```
 ### Sample Code
 ```java
-
 FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Find Restaurant", "Find the best restaurant in your neighborhood.",R.drawable.find_restaurant1);
         FancyWalkthroughCard fancywalkthroughCard2 = new FancyWalkthroughCard("Pick the best", "Pick the right place using trusted ratings and reviews.",R.drawable.pickthebest);
         FancyWalkthroughCard fancywalkthroughCard3 = new FancyWalkthroughCard("Choose your meal", "Easily find the type of food you're craving.",R.drawable.chooseurmeal);
@@ -124,7 +123,7 @@ FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Find Rest
         fancywalkthroughCard2.setIconLayoutParams(300,300,0,0,0,0);
         fancywalkthroughCard3.setBackgroundColor(R.color.white);
         fancywalkthroughCard3.setIconLayoutParams(300,300,0,0,0,0);
-        fancywalkthroughCard4.setIconLayoutParams(300,300,0,0,0,0);
+        fancywalkthroughCard4.setBackgroundColor(R.color.white);
         List<FancyWalkthroughCard> pages = new ArrayList<>();
 
         pages.add(fancywalkthroughCard1);
