@@ -46,21 +46,21 @@ public class YourActivity extends FancyWalkthroughActivity {
 
 ```java
 FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Title", "Description", R.drawable.icon1);
-ahoyOnboarderCard1.setBackgroundColor(R.color.white);
-ahoyOnboarderCard1.setTitleColor(R.color.black);
-ahoyOnboarderCard1.setDescriptionColor(R.color.black);
-//ahoyOnboarderCard1.setTitleTextSize(dpToPixels(10, this));
-//ahoyOnboarderCard1.setDescriptionTextSize(dpToPixels(8, this));
-//ahoyOnboarderCard1.setIconLayoutParams(iconWidth, iconHeight, marginTop, marginLeft, marginRight, marginBottom);
+fancywalkthroughCard1.setBackgroundColor(R.color.white);
+fancywalkthroughCard1.setTitleColor(R.color.black);
+fancywalkthroughCard1.setDescriptionColor(R.color.black);
+//fancywalkthroughCard1.setTitleTextSize(dpToPixels(10, this));
+//fancywalkthroughCard1.setDescriptionTextSize(dpToPixels(8, this));
+//fancywalkthroughCard1.setIconLayoutParams(iconWidth, iconHeight, marginTop, marginLeft, marginRight, marginBottom);
 ```
 
 **After that, Create a list of cards and set them using**
 
 ```java
 List<FancyWalkthroughCard> pages = new ArrayList<>();
-pages.add(ahoyOnboarderCard1);
-pages.add(ahoyOnboarderCard2);
-pages.add(ahoyOnboarderCard3);
+pages.add(fancywalkthroughCard1);
+pages.add(fancywalkthroughCard2);
+pages.add(fancywalkthroughCard3);
 ...
 
 setOnboardPages(pages);
