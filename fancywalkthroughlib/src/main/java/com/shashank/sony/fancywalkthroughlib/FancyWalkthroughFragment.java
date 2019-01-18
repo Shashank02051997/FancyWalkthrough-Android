@@ -101,11 +101,6 @@ public class FancyWalkthroughFragment extends Fragment {
     }
 
 
-    public interface OnClickCallback {
-        void onClick();
-    }
-
-
     @SuppressLint("ResourceAsColor")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
