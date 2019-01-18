@@ -4,13 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="220dp"
+        android:id="@+id/fla_skip"
+        android:visibility="visible"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onClick"
         android:src="@drawable/ic_arrow_forward_black_24dp"
         />
+
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"

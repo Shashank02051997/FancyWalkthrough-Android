@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 public class FancyWalkthroughCard {
 
@@ -26,6 +27,8 @@ public class FancyWalkthroughCard {
     public float titleTextSize;
     public float descriptionTextSize;
     public int iconWidth, iconHeight, marginTop, marginLeft, marginRight, marginBottom;
+
+    private boolean displaySkip = true;
 
     public FancyWalkthroughCard(String title, String description) {
         this.title = title;
@@ -157,4 +160,17 @@ public class FancyWalkthroughCard {
     public int getMarginBottom() {
         return marginBottom;
     }
+
+    public boolean isSkipDisplay() {
+        return displaySkip;
+    }
+
+    /**
+     * SetDisplaySkip
+     * @param isDisplay if true the floating button is display
+     */
+    public void setDisplaySkip(boolean isDisplay) {
+        this.displaySkip = isDisplay;
+    }
+
 }
