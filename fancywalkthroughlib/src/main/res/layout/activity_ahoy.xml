@@ -22,8 +22,6 @@
         android:overScrollMode="never"
         android:paddingTop="20dp" />
 
-
-
     <FrameLayout
         android:id="@+id/buttons_layout"
         android:layout_width="match_parent"

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/FancyWalkthrough-Android.iml" filepath="$PROJECT_DIR$/FancyWalkthrough-Android.iml" group="FancyWalkthrough-Android" />
+      <module fileurl="file://$PROJECT_DIR$/app/FancyWalkthrough-Android-app.iml" filepath="$PROJECT_DIR$/app/FancyWalkthrough-Android-app.iml" group="FancyWalkthrough-Android/app" />
+      <module fileurl="file://$PROJECT_DIR$/fancywalkthroughlib/FancyWalkthrough-Android-fancywalkthroughlib.iml" filepath="$PROJECT_DIR$/fancywalkthroughlib/FancyWalkthrough-Android-fancywalkthroughlib.iml" group="FancyWalkthrough-Android/fancywalkthroughlib" />
       <module fileurl="file://$PROJECT_DIR$/FancyWalkthroughLibrary.iml" filepath="$PROJECT_DIR$/FancyWalkthroughLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/fancywalkthroughlib/fancywalkthroughlib.iml" filepath="$PROJECT_DIR$/fancywalkthroughlib/fancywalkthroughlib.iml" />

@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -25,6 +27,8 @@ import android.widget.TextView;
 import com.shashank.sony.fancywalkthroughlib.utils.ShadowTransformer;
 import com.shashank.sony.fancywalkthroughlib.views.CircleIndicatorView;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class FancyWalkthroughActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
@@ -44,6 +48,7 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
     private List<Integer> colorList;
     private boolean solidBackground = false;
     private List<FancyWalkthroughCard> pages;
+    private boolean isRTL = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,34 +57,53 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
         setStatusBackgroundColor();
         hideActionBar();
 
-        parentLayout = (RelativeLayout) findViewById(R.id.parent_layout);
-        circleIndicatorView = (CircleIndicatorView) findViewById(R.id.circle_indicator_view);
-        btnSkip = (TextView) findViewById(R.id.btn_skip);
-        buttonsLayout = (FrameLayout) findViewById(R.id.buttons_layout);
-        navigationControls = (FrameLayout) findViewById(R.id.navigation_layout);
-        ivNext = (ImageView) findViewById(R.id.ivNext);
-        ivPrev = (ImageView) findViewById(R.id.ivPrev);
-        backgroundImage = (ImageView) findViewById(R.id.background_image);
-        vpOnboarderPager = (ViewPager) findViewById(R.id.vp_pager);
+        parentLayout = findViewById(R.id.parent_layout);
+        circleIndicatorView = findViewById(R.id.circle_indicator_view);
+        btnSkip = findViewById(R.id.btn_skip);
+        buttonsLayout = findViewById(R.id.buttons_layout);
+        navigationControls = findViewById(R.id.navigation_layout);
+        ivNext = findViewById(R.id.ivNext);
+        ivPrev = findViewById(R.id.ivPrev);
+        backgroundImage = findViewById(R.id.background_image);
+        vpOnboarderPager = findViewById(R.id.vp_pager);
         vpOnboarderPager.addOnPageChangeListener(this);
         btnSkip.setOnClickListener(this);
         ivPrev.setOnClickListener(this);
         ivNext.setOnClickListener(this);
 
         hideFinish(false);
-        fadeOut(ivPrev, false);
     }
 
-    public void setOnboardPages(List<FancyWalkthroughCard> pages) {
+    public void setOnboardPages(final List<FancyWalkthroughCard> pages) {
 
         this.pages = pages;
-        ahoyOnboarderAdapter = new FancyWalkthroughAdapter(pages, getSupportFragmentManager(), dpToPixels(0, this), typeface);
+        if(isRTL) { //reverse the order of pages so first page is the last
+
+            Collections.reverse(this.pages);
+            fadeOut(ivNext, false);
+        } else {
+
+            fadeOut(ivPrev, false);
+        } //end if
+
+        ahoyOnboarderAdapter = new FancyWalkthroughAdapter(pages, getSupportFragmentManager(), dpToPixels(0, this), typeface, isRTL);
         mCardShadowTransformer = new ShadowTransformer(vpOnboarderPager, ahoyOnboarderAdapter);
         mCardShadowTransformer.enableScaling(true);
         vpOnboarderPager.setAdapter(ahoyOnboarderAdapter);
         vpOnboarderPager.setPageTransformer(false, mCardShadowTransformer);
         circleIndicatorView.setPageIndicators(pages.size());
 
+        if(isRTL) { // start from the last page
+
+            //without postdelayed, a rectangle is drawn around the first page
+            vpOnboarderPager.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    vpOnboarderPager.setCurrentItem(pages.size() - 1, true);
+                }
+            },1);
+            circleIndicatorView.setCurrentPage(ahoyOnboarderAdapter.getCount() - 1);
+        } //end if
     }
 
     public float dpToPixels(int dp, Context context) {
@@ -101,12 +125,34 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
         boolean isInFirstPage = vpOnboarderPager.getCurrentItem() == 0;
         boolean isInLastPage = vpOnboarderPager.getCurrentItem() == ahoyOnboarderAdapter.getCount() - 1;
 
+        if (isRTL) { //if RTL, reverse the order
+            isInFirstPage = vpOnboarderPager.getCurrentItem() == ahoyOnboarderAdapter.getCount() - 1;
+            isInLastPage = vpOnboarderPager.getCurrentItem() == 0;
+        }
         if (i == R.id.btn_skip && isInLastPage) {
             onFinishButtonPressed();
-        } else if (i == R.id.ivPrev && !isInFirstPage) {
-            vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() - 1);
-        } else if (i == R.id.ivNext && !isInLastPage) {
-            vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() + 1);
+        } else if (i == R.id.ivPrev) {
+            if (isRTL) {
+                if(!isInLastPage) {
+
+                    vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() - 1);
+                }//end if
+            } else {
+                if(!isInFirstPage) {
+                    vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() - 1);
+                } //end if
+            }
+        } else if (i == R.id.ivNext) {
+            if (isRTL) {
+                if(!isInFirstPage) {
+
+                    vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() + 1);
+                }//end if
+            } else {
+                if(!isInLastPage) {
+                    vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() + 1);
+                } //end if
+            }
         }
     }
 
@@ -120,24 +166,51 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
 
         int firstPagePosition = 0;
         int lastPagePosition = ahoyOnboarderAdapter.getCount() - 1;
-        circleIndicatorView.setCurrentPage(position);
+
+        //in case of RTL first is the last
+        if (isRTL) {
+            firstPagePosition = ahoyOnboarderAdapter.getCount() - 1;
+            lastPagePosition = 0;
+        } //end if
+
         circleIndicatorView.setCurrentPage(position);
 
         if (position == lastPagePosition) {
             fadeOut(circleIndicatorView);
             showFinish();
-            fadeOut(ivNext);
-            fadeIn(ivPrev);
+            if(isRTL) {
+                fadeOut(ivPrev);
+                fadeIn(ivNext);
+            } else {
+                fadeOut(ivNext);
+                fadeIn(ivPrev);
+            } //end if
         } else if (position == firstPagePosition) {
-            fadeOut(ivPrev);
-            fadeIn(ivNext);
+
+            if(isRTL) {
+
+                fadeOut(ivNext);
+                fadeIn(ivPrev);
+            } else {
+
+                fadeOut(ivPrev);
+                fadeIn(ivNext);
+            } //end if
             hideFinish();
             fadeIn(circleIndicatorView);
         } else {
             fadeIn(circleIndicatorView);
             hideFinish();
-            fadeIn(ivPrev);
-            fadeIn(ivNext);
+
+            if(isRTL) {
+
+                fadeIn(ivNext);
+                fadeIn(ivPrev);
+            } else {
+
+                fadeIn(ivPrev);
+                fadeIn(ivNext);
+            }
         }
 
         if (solidBackground && (pages.size() == colorList.size())) {
@@ -291,6 +364,13 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
     public void setActiveIndicatorColor(int color) {
         this.circleIndicatorView.setActiveIndicatorColor(color);
     }
+
+
+    public void setRTL(boolean value) {
+
+        this.isRTL = value;
+    }
+
 
     /**
      * <br/><br/>
