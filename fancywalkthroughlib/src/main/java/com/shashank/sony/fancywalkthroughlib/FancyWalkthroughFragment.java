@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -35,6 +36,7 @@ public class FancyWalkthroughFragment extends Fragment {
     private static final String FANCY_PAGE_MARGIN_RIGHT = "ahoy_page_margin_right";
     private static final String FANCY_PAGE_MARGIN_TOP = "ahoy_page_margin_top";
     private static final String FANCY_PAGE_MARGIN_BOTTOM = "ahoy_page_margin_bottom";
+    private static final String FANCY_PAGE_IS_RTL = "ahoy_page_is_rtl";
 
 
     private String title;
@@ -58,13 +60,14 @@ public class FancyWalkthroughFragment extends Fragment {
     private TextView tvOnboarderTitle;
     private TextView tvOnboarderDescription;
     private CardView cardView;
+    private FloatingActionButton fab;
     private int iconHeight, iconWidth;
     private int marginTop, marginBottom, marginLeft, marginRight;
 
     public FancyWalkthroughFragment() {
     }
 
-    public static FancyWalkthroughFragment newInstance(FancyWalkthroughCard card) {
+    public static FancyWalkthroughFragment newInstance(FancyWalkthroughCard card, boolean isRTL) {
         Bundle args = new Bundle();
         args.putString(FANCY_PAGE_TITLE, card.getTitle());
         args.putString(FANCY_PAGE_DESCRIPTION, card.getDescription());
@@ -82,6 +85,7 @@ public class FancyWalkthroughFragment extends Fragment {
         args.putInt(FANCY_PAGE_MARGIN_RIGHT, card.getMarginRight());
         args.putInt(FANCY_PAGE_MARGIN_TOP, card.getMarginTop());
         args.putInt(FANCY_PAGE_MARGIN_BOTTOM, card.getMarginBottom());
+        args.putBoolean(FANCY_PAGE_IS_RTL, isRTL);
 
         FancyWalkthroughFragment fragment = new FancyWalkthroughFragment();
         fragment.setArguments(args);
@@ -117,12 +121,16 @@ public class FancyWalkthroughFragment extends Fragment {
         marginRight = bundle.getInt(FANCY_PAGE_MARGIN_RIGHT, (int) dpToPixels(0, getActivity()));
 
         view = inflater.inflate(R.layout.fragment_ahoy, container, false);
-        ivOnboarderImage = (ImageView) view.findViewById(R.id.iv_image);
-        tvOnboarderTitle = (TextView) view.findViewById(R.id.tv_title);
-        tvOnboarderDescription = (TextView) view.findViewById(R.id.tv_description);
-        cardView = (CardView) view.findViewById(R.id.cv_cardview);
-        view1 = (View) view.findViewById(R.id.view1);
+        ivOnboarderImage = view.findViewById(R.id.iv_image);
+        tvOnboarderTitle = view.findViewById(R.id.tv_title);
+        tvOnboarderDescription = view.findViewById(R.id.tv_description);
+        cardView = view.findViewById(R.id.cv_cardview);
+        view1 = view.findViewById(R.id.view1);
+        fab = view.findViewById(R.id.fab);
 
+        if (bundle.getBoolean(FANCY_PAGE_IS_RTL, false)) {
+            fab.setRotation(180); //rotate the guide arrow
+        } //end if
 
         if (title != null) {
             tvOnboarderTitle.setText(title);

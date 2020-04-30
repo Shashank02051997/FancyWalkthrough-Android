@@ -14,6 +14,7 @@ public class MainActivity extends FancyWalkthroughActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Find Restaurant", "Find the best restaurant in your neighborhood.",R.drawable.find_restaurant1);
         FancyWalkthroughCard fancywalkthroughCard2 = new FancyWalkthroughCard("Pick the best", "Pick the right place using trusted ratings and reviews.",R.drawable.pickthebest);
         FancyWalkthroughCard fancywalkthroughCard3 = new FancyWalkthroughCard("Choose your meal", "Easily find the type of food you're craving.",R.drawable.chooseurmeal);
@@ -44,8 +45,10 @@ public class MainActivity extends FancyWalkthroughActivity {
         //setImageBackground(R.drawable.restaurant);
         setInactiveIndicatorColor(R.color.grey_600);
         setActiveIndicatorColor(R.color.colorGreen);
-        setOnboardPages(pages);
 
+        //to allow for RTL layout
+        setRTL(true);
+        setOnboardPages(pages);
     }
 
     @Override

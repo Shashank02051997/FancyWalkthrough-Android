@@ -20,19 +20,19 @@ public class FancyWalkthroughAdapter extends FragmentStatePagerAdapter implement
     private List<FancyWalkthroughFragment> mFragments = new ArrayList<>();
     private float mBaseElevation;
     private Typeface typeface;
+    private boolean isRTL = false;
 
-    public FancyWalkthroughAdapter(List<FancyWalkthroughCard> pages, FragmentManager fm, float baseElevation, Typeface typeface) {
+    public FancyWalkthroughAdapter(List<FancyWalkthroughCard> pages, FragmentManager fm, float baseElevation, Typeface typeface, boolean isRTL) {
         super(fm);
         this.pages = pages;
         this.typeface = typeface;
         this.mBaseElevation = baseElevation;
-
+        this.isRTL = isRTL;
         for (int i = 0; i < pages.size(); i++) {
             addCardFragment(pages.get(i));
         }
 
         //setTypeface(typeface);
-
     }
 
     @Override
@@ -60,7 +60,7 @@ public class FancyWalkthroughAdapter extends FragmentStatePagerAdapter implement
     }
 
     public void addCardFragment(FancyWalkthroughCard page) {
-        mFragments.add(FancyWalkthroughFragment.newInstance(page));
+        mFragments.add(FancyWalkthroughFragment.newInstance(page, isRTL));
     }
 
     @Override
