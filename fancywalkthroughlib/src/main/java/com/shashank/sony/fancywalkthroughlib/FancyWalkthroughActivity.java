@@ -6,12 +6,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
@@ -19,8 +13,14 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import com.shashank.sony.fancywalkthroughlib.utils.ShadowTransformer;
 import com.shashank.sony.fancywalkthroughlib.views.CircleIndicatorView;
@@ -35,8 +35,6 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
     private TextView btnSkip;
     private ImageView ivNext, ivPrev;
     private FrameLayout navigationControls;
-    private FrameLayout buttonsLayout;
-    private RelativeLayout parentLayout;
     private ImageView backgroundImage;
 
     private ShadowTransformer mCardShadowTransformer;
@@ -52,15 +50,13 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
         setStatusBackgroundColor();
         hideActionBar();
 
-        parentLayout = (RelativeLayout) findViewById(R.id.parent_layout);
-        circleIndicatorView = (CircleIndicatorView) findViewById(R.id.circle_indicator_view);
-        btnSkip = (TextView) findViewById(R.id.btn_skip);
-        buttonsLayout = (FrameLayout) findViewById(R.id.buttons_layout);
-        navigationControls = (FrameLayout) findViewById(R.id.navigation_layout);
-        ivNext = (ImageView) findViewById(R.id.ivNext);
-        ivPrev = (ImageView) findViewById(R.id.ivPrev);
-        backgroundImage = (ImageView) findViewById(R.id.background_image);
-        vpOnboarderPager = (ViewPager) findViewById(R.id.vp_pager);
+        circleIndicatorView = findViewById(R.id.circle_indicator_view);
+        btnSkip = findViewById(R.id.btn_skip);
+        navigationControls = findViewById(R.id.navigation_layout);
+        ivNext = findViewById(R.id.ivNext);
+        ivPrev = findViewById(R.id.ivPrev);
+        backgroundImage = findViewById(R.id.background_image);
+        vpOnboarderPager = findViewById(R.id.vp_pager);
         vpOnboarderPager.addOnPageChangeListener(this);
         btnSkip.setOnClickListener(this);
         ivPrev.setOnClickListener(this);

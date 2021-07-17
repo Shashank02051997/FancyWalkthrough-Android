@@ -1,26 +1,16 @@
 package com.shashank.sony.fancywalkthroughlib.utils;
 
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.CardView;
 import android.view.View;
 
-/**
- * Created by Rahul Juneja on 30-08-2016.
- */
+import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
+
 public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPager.PageTransformer {
 
-    private ViewPager mViewPager;
-    private CardAdapter mAdapter;
+    private final ViewPager mViewPager;
+    private final CardAdapter mAdapter;
     private float mLastOffset;
     private boolean mScalingEnabled;
-
-    public interface CardAdapter {
-
-        int MAX_ELEVATION_FACTOR = 6;
-        float getBaseElevation();
-        CardView getCardViewAt(int position);
-        int getCount();
-    }
 
     public ShadowTransformer(ViewPager viewPager, CardAdapter adapter) {
         mViewPager = viewPager;
@@ -36,7 +26,7 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
                 currentCard.animate().scaleY(1);
                 currentCard.animate().scaleX(1);
             }
-        }else if(!mScalingEnabled && enable){
+        } else if (!mScalingEnabled && enable) {
             // grow main card
             CardView currentCard = mAdapter.getCardViewAt(mViewPager.getCurrentItem());
             if (currentCard != null) {
@@ -116,5 +106,16 @@ public class ShadowTransformer implements ViewPager.OnPageChangeListener, ViewPa
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    public interface CardAdapter {
+
+        int MAX_ELEVATION_FACTOR = 6;
+
+        float getBaseElevation();
+
+        CardView getCardViewAt(int position);
+
+        int getCount();
     }
 }

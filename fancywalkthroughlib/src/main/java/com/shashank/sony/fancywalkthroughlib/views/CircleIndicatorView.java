@@ -3,10 +3,11 @@ package com.shashank.sony.fancywalkthroughlib.views;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.support.annotation.ColorRes;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.ColorRes;
+import androidx.core.content.ContextCompat;
 
 import com.shashank.sony.fancywalkthroughlib.R;
 

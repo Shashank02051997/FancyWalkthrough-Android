@@ -1,9 +1,10 @@
 package com.shashank.sony.fancywalkthroughlib;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 public class FancyWalkthroughCard {
 
@@ -81,24 +82,24 @@ public class FancyWalkthroughCard {
         return titleColor;
     }
 
-    public int getDescriptionColor() {
-        return descriptionColor;
-    }
-
     public void setTitleColor(int color) {
         this.titleColor = color;
+    }
+
+    public int getDescriptionColor() {
+        return descriptionColor;
     }
 
     public void setDescriptionColor(int color) {
         this.descriptionColor = color;
     }
 
-    public void setImageResourceId(int imageResourceId) {
-        this.imageResourceId = imageResourceId;
-    }
-
     public int getImageResourceId() {
         return imageResourceId;
+    }
+
+    public void setImageResourceId(int imageResourceId) {
+        this.imageResourceId = imageResourceId;
     }
 
     public float getTitleTextSize() {

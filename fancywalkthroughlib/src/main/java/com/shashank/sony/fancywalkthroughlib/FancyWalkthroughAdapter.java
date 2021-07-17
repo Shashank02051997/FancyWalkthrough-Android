@@ -1,12 +1,13 @@
 package com.shashank.sony.fancywalkthroughlib;
 
 import android.graphics.Typeface;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.ViewGroup;
+
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.shashank.sony.fancywalkthroughlib.utils.ShadowTransformer;
 
@@ -15,11 +16,11 @@ import java.util.List;
 
 public class FancyWalkthroughAdapter extends FragmentStatePagerAdapter implements ShadowTransformer.CardAdapter {
 
-    private String TAG = FancyWalkthroughAdapter.class.getSimpleName();
-    List<FancyWalkthroughCard> pages = new ArrayList<FancyWalkthroughCard>();
-    private List<FancyWalkthroughFragment> mFragments = new ArrayList<>();
-    private float mBaseElevation;
-    private Typeface typeface;
+    List<FancyWalkthroughCard> pages;
+    private final String TAG = FancyWalkthroughAdapter.class.getSimpleName();
+    private final List<FancyWalkthroughFragment> mFragments = new ArrayList<>();
+    private final float mBaseElevation;
+    private final Typeface typeface;
 
     public FancyWalkthroughAdapter(List<FancyWalkthroughCard> pages, FragmentManager fm, float baseElevation, Typeface typeface) {
         super(fm);
@@ -37,7 +38,6 @@ public class FancyWalkthroughAdapter extends FragmentStatePagerAdapter implement
 
     @Override
     public Fragment getItem(int position) {
-        //return FancyWalkthroughFragment.newInstance(pages.get(position));
         return mFragments.get(position);
     }
 
@@ -70,7 +70,6 @@ public class FancyWalkthroughAdapter extends FragmentStatePagerAdapter implement
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        // TODO Auto-generated method stub
         super.destroyItem(container, position, object);
 
     }

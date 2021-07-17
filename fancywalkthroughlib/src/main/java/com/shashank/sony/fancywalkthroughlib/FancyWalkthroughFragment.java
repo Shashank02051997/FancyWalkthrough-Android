@@ -4,11 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +11,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.StringRes;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 public class FancyWalkthroughFragment extends Fragment {
 
@@ -53,7 +54,7 @@ public class FancyWalkthroughFragment extends Fragment {
     private float titleTextSize;
     private float descriptionTextSize;
 
-    private View view,view1;
+    private View view, view1;
     private ImageView ivOnboarderImage;
     private TextView tvOnboarderTitle;
     private TextView tvOnboarderDescription;
@@ -117,11 +118,11 @@ public class FancyWalkthroughFragment extends Fragment {
         marginRight = bundle.getInt(FANCY_PAGE_MARGIN_RIGHT, (int) dpToPixels(0, getActivity()));
 
         view = inflater.inflate(R.layout.fragment_ahoy, container, false);
-        ivOnboarderImage = (ImageView) view.findViewById(R.id.iv_image);
-        tvOnboarderTitle = (TextView) view.findViewById(R.id.tv_title);
-        tvOnboarderDescription = (TextView) view.findViewById(R.id.tv_description);
-        cardView = (CardView) view.findViewById(R.id.cv_cardview);
-        view1 = (View) view.findViewById(R.id.view1);
+        ivOnboarderImage = view.findViewById(R.id.iv_image);
+        tvOnboarderTitle = view.findViewById(R.id.tv_title);
+        tvOnboarderDescription = view.findViewById(R.id.tv_description);
+        cardView = view.findViewById(R.id.cv_cardview);
+        view1 = view.findViewById(R.id.view1);
 
 
         if (title != null) {
@@ -149,7 +150,7 @@ public class FancyWalkthroughFragment extends Fragment {
         }
 
         if (imageResId != 0) {
-               ivOnboarderImage.setImageDrawable(ContextCompat.getDrawable(getActivity(), imageResId));
+            ivOnboarderImage.setImageDrawable(ContextCompat.getDrawable(getActivity(), imageResId));
         }
 
         if (titleTextSize != 0f) {
