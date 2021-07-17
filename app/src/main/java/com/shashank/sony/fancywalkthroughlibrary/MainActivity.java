@@ -21,12 +21,16 @@ public class MainActivity extends FancyWalkthroughActivity {
 
         fancywalkthroughCard1.setBackgroundColor(R.color.white);
         fancywalkthroughCard1.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        fancywalkthroughCard1.setDisplaySkip(true);
         fancywalkthroughCard2.setBackgroundColor(R.color.white);
         fancywalkthroughCard2.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        fancywalkthroughCard2.setDisplaySkip(true);
         fancywalkthroughCard3.setBackgroundColor(R.color.white);
         fancywalkthroughCard3.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        fancywalkthroughCard3.setDisplaySkip(true);
         fancywalkthroughCard4.setBackgroundColor(R.color.white);
         fancywalkthroughCard4.setIconLayoutParams(300, 300, 0, 0, 0, 0);
+        fancywalkthroughCard4.setDisplaySkip(true);
         List<FancyWalkthroughCard> pages = new ArrayList<>();
 
         pages.add(fancywalkthroughCard1);

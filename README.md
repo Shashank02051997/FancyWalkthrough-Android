@@ -31,7 +31,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 ```gradle
 dependencies {
 	...
-	compile 'com.github.Shashank02051997:FancyWalkthrough-Android:2.1'
+	compile 'com.github.Shashank02051997:FancyWalkthrough-Android:2.2'
 }
 ```
 # Fancy Walkthrough
@@ -56,6 +56,7 @@ FancyWalkthroughCard fancywalkthroughCard1 = new FancyWalkthroughCard("Title", "
 fancywalkthroughCard1.setBackgroundColor(R.color.white);
 fancywalkthroughCard1.setTitleColor(R.color.black);
 fancywalkthroughCard1.setDescriptionColor(R.color.black);
+//fancywalkthroughCard1.setDisplaySkip(false);
 //fancywalkthroughCard1.setTitleTextSize(dpToPixels(10, this));
 //fancywalkthroughCard1.setDescriptionTextSize(dpToPixels(8, this));
 //fancywalkthroughCard1.setIconLayoutParams(iconWidth, iconHeight, marginTop, marginLeft, marginRight, marginBottom);

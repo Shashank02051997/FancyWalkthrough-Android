@@ -18,6 +18,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class FancyWalkthroughFragment extends Fragment {
 
     private static final String FANCY_PAGE_TITLE = "ahoy_page_title";
@@ -175,10 +177,10 @@ public class FancyWalkthroughFragment extends Fragment {
 
         }
 
-        if (!isDisplay) {
-            skip.setVisibility(View.GONE);
-        } else {
+        if (isDisplay) {
             skip.setVisibility(View.VISIBLE);
+        } else {
+            skip.setVisibility(View.GONE);
         }
 
         if (iconWidth != 0 && iconHeight != 0) {
