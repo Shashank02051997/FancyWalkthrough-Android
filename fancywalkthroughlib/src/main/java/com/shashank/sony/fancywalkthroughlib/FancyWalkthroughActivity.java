@@ -67,7 +67,6 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
     }
 
     public void setOnboardPages(List<FancyWalkthroughCard> pages) {
-
         this.pages = pages;
         ahoyOnboarderAdapter = new FancyWalkthroughAdapter(pages, getSupportFragmentManager(), dpToPixels(0, this), typeface);
         mCardShadowTransformer = new ShadowTransformer(vpOnboarderPager, ahoyOnboarderAdapter);
@@ -75,7 +74,6 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
         vpOnboarderPager.setAdapter(ahoyOnboarderAdapter);
         vpOnboarderPager.setPageTransformer(false, mCardShadowTransformer);
         circleIndicatorView.setPageIndicators(pages.size());
-
     }
 
     public float dpToPixels(int dp, Context context) {
@@ -97,7 +95,7 @@ public abstract class FancyWalkthroughActivity extends AppCompatActivity impleme
         boolean isInFirstPage = vpOnboarderPager.getCurrentItem() == 0;
         boolean isInLastPage = vpOnboarderPager.getCurrentItem() == ahoyOnboarderAdapter.getCount() - 1;
 
-        if (i == R.id.btn_skip && isInLastPage) {
+        if ((i == R.id.btn_skip && isInLastPage) || i == R.id.fla_skip) {
             onFinishButtonPressed();
         } else if (i == R.id.ivPrev && !isInFirstPage) {
             vpOnboarderPager.setCurrentItem(vpOnboarderPager.getCurrentItem() - 1);

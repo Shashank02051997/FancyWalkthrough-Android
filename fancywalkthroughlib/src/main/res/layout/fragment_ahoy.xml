@@ -10,7 +10,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginBottom="220dp"
-        android:src="@drawable/ic_arrow_forward_black_24dp" />
+        android:id="@+id/fla_skip"
+        android:visibility="visible"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onClick"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        />
 
     <View
         android:id="@+id/view1"

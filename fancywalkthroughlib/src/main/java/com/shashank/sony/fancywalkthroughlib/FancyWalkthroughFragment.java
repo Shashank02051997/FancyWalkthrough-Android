@@ -36,6 +36,7 @@ public class FancyWalkthroughFragment extends Fragment {
     private static final String FANCY_PAGE_MARGIN_RIGHT = "ahoy_page_margin_right";
     private static final String FANCY_PAGE_MARGIN_TOP = "ahoy_page_margin_top";
     private static final String FANCY_PAGE_MARGIN_BOTTOM = "ahoy_page_margin_bottom";
+    private static final String FANCY_PAGE_DISPLAY_SKIP = "ahoy_page_display_skip";
 
 
     private String title;
@@ -53,14 +54,17 @@ public class FancyWalkthroughFragment extends Fragment {
     private int imageResId;
     private float titleTextSize;
     private float descriptionTextSize;
+    private boolean isDisplay;
 
     private View view, view1;
     private ImageView ivOnboarderImage;
     private TextView tvOnboarderTitle;
     private TextView tvOnboarderDescription;
     private CardView cardView;
+    private FloatingActionButton skip;
     private int iconHeight, iconWidth;
     private int marginTop, marginBottom, marginLeft, marginRight;
+
 
     public FancyWalkthroughFragment() {
     }
@@ -83,6 +87,8 @@ public class FancyWalkthroughFragment extends Fragment {
         args.putInt(FANCY_PAGE_MARGIN_RIGHT, card.getMarginRight());
         args.putInt(FANCY_PAGE_MARGIN_TOP, card.getMarginTop());
         args.putInt(FANCY_PAGE_MARGIN_BOTTOM, card.getMarginBottom());
+        args.putBoolean(FANCY_PAGE_DISPLAY_SKIP, card.isSkipDisplay());
+
 
         FancyWalkthroughFragment fragment = new FancyWalkthroughFragment();
         fragment.setArguments(args);
@@ -116,6 +122,7 @@ public class FancyWalkthroughFragment extends Fragment {
         marginBottom = bundle.getInt(FANCY_PAGE_MARGIN_BOTTOM, (int) dpToPixels(0, getActivity()));
         marginLeft = bundle.getInt(FANCY_PAGE_MARGIN_LEFT, (int) dpToPixels(0, getActivity()));
         marginRight = bundle.getInt(FANCY_PAGE_MARGIN_RIGHT, (int) dpToPixels(0, getActivity()));
+        isDisplay = bundle.getBoolean(FANCY_PAGE_DISPLAY_SKIP, true);
 
         view = inflater.inflate(R.layout.fragment_ahoy, container, false);
         ivOnboarderImage = view.findViewById(R.id.iv_image);
@@ -123,7 +130,7 @@ public class FancyWalkthroughFragment extends Fragment {
         tvOnboarderDescription = view.findViewById(R.id.tv_description);
         cardView = view.findViewById(R.id.cv_cardview);
         view1 = view.findViewById(R.id.view1);
-
+        skip = (FloatingActionButton) view.findViewById(R.id.fla_skip);
 
         if (title != null) {
             tvOnboarderTitle.setText(title);
@@ -168,6 +175,12 @@ public class FancyWalkthroughFragment extends Fragment {
 
         }
 
+        if (!isDisplay) {
+            skip.setVisibility(View.GONE);
+        } else {
+            skip.setVisibility(View.VISIBLE);
+        }
+
         if (iconWidth != 0 && iconHeight != 0) {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(iconWidth, iconHeight);
             layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
@@ -198,4 +211,9 @@ public class FancyWalkthroughFragment extends Fragment {
     public TextView getDescriptionView() {
         return tvOnboarderDescription;
     }
+
+    public FloatingActionButton getSkip() {
+        return skip;
+    }
+
 }

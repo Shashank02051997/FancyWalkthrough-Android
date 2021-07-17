@@ -28,6 +28,8 @@ public class FancyWalkthroughCard {
     public float descriptionTextSize;
     public int iconWidth, iconHeight, marginTop, marginLeft, marginRight, marginBottom;
 
+    private boolean displaySkip = true;
+
     public FancyWalkthroughCard(String title, String description) {
         this.title = title;
         this.description = description;
@@ -158,4 +160,17 @@ public class FancyWalkthroughCard {
     public int getMarginBottom() {
         return marginBottom;
     }
+
+    public boolean isSkipDisplay() {
+        return displaySkip;
+    }
+
+    /**
+     * SetDisplaySkip
+     * @param isDisplay if true the floating button is display
+     */
+    public void setDisplaySkip(boolean isDisplay) {
+        this.displaySkip = isDisplay;
+    }
+
 }
