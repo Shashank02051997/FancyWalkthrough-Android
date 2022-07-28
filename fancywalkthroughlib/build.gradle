@@ -2,13 +2,10 @@ apply plugin: 'com.android.library'
 group='com.github.Shashank02051997'
 
 android {
-    compileSdkVersion 33
-
-
-
+    compileSdkVersion 31
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 33
+        targetSdkVersion 31
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
