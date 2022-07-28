@@ -31,7 +31,7 @@ Add this to your module's `build.gradle` file (make sure the version matches the
 ```gradle
 dependencies {
 	...
-	compile 'com.github.Shashank02051997:FancyWalkthrough-Android:2.2'
+	compile 'com.github.Shashank02051997:FancyWalkthrough-Android:2.3'
 }
 ```
 # Fancy Walkthrough
